@@ -17,9 +17,19 @@ app.use(morgan("dev"));
 
 
 // TODO 6.1: Create root route "/"
+import { getRandomQuote } from "./quotes.js";
 
+app.get("/", (req, res) => {
+  res.send("Express server is running");
+});
 
 // TODO 6.2: Create "/api/quote" route
-
+app.get("/api/quote", (req, res) => {
+  const quote = getRandomQuote();
+  res.json({ quote });
+});
 
 // TODO 7: Start server using app.listen
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
